@@ -1,0 +1,67 @@
+﻿<Window x:Class="SoccerApp.ClubWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoccerApp"
+        mc:Ignorable="d"
+        Title="ClubWindow" Height="641" Width="1041">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Label -->
+        <Label x:Name="header" Content="Clubs" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,10,0,10"/>
+
+        <!-- Form Grid -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Club Name Label and TextBox -->
+            <Label Content="Club Name" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="clubNameTxt" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Margin="5"/>
+
+            <!-- City Label and TextBox -->
+            <Label Content="City" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="cityNameTxt" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Margin="5"/>
+
+            <!-- League Label and ComboBox -->
+            <Label Content="League" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ComboBox x:Name="leagueComboBox" Grid.Row="5" DisplayMemberPath="league_name" SelectedValuePath="id" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Margin="5"/>
+
+            <!-- Add Button -->
+            <Button x:Name="btnAdd" Grid.Row="6" Content="Add+" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Margin="5" Click="btnAdd_Click_1"/>
+        </Grid>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="clubDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="20,194,20,20" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <!-- Define other columns based on the structure of your DataTable -->
+                <DataGridTextColumn Header="Club Name" Binding="{Binding club_name}" />
+                <DataGridTextColumn Header="City" Binding="{Binding city}" />
+                <DataGridTextColumn Header="League Name" Binding="{Binding league_name}" />
+
+                <!-- Edit and Delete button column -->
+                <DataGridTemplateColumn Header="Actions" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Edit" Click="Edit_Click"/>
+                                <Button Content="Delete" Click="Delete_Click" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
